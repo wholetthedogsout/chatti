@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Gulp Base</title>
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body>
+    <div class="chatti-info">
+      <h1>Welcome to Chatti, I'm here to assist you!</h1><br>
+      <h2>Some useful keys to help get you started:</h2><br>
+        <ul>
+          <li>
+            -to see a user's git hub info type "gh: username"
+          </li>
+          <li>
+            -to check out the local weather or the weather anywhere type "temp: city or zipcode"
+          </li>
+          <li>
+            -to search for a gif, any gif, type "gif: anything you want"
+          </li>
+          <li>
+            example: gif: grumpy cat
+          </li><br>
+          <li>
+            Otherwise just tell me anything you want.
+          </li>
+        </ul>
+    </div>
+    <div class="chatti-container">
+      <div class="chatti-output">
+      </div>
+    <form class="chatti-form">
+      <input class="chatti-input" placeholder="What can I help you with?" size="40">
+    </form>
+    </div>
+  <script id="chatti-list" type="text/html">
+    <ul>
+              <li class="chat"><%- m %></li>
+    </ul>
+  </script>
+
+  <script id="gh-list" type="text/html">
+    <div class="api-container">
+      <a class="gitlink" href="<%- m.html_url %>">
+        <img class="user-avatar" src="<%- m.avatar_url %>" alt="avatar">
+        <ul class = "user-details">
+          <li class="user-name">
+            <%-m.login %>
+          </li>
+          <li class="number_repos">
+          Created: <%- m.public_repos %> repos
+          </li>
+        </ul>
+      </a>
+    </div>
+  </script>
+
+  <script id="weather-list" type="text/html">
+    <div class="api-container">
+      <a class="gitlink" href="<%- m.html_url %>">
+        <img class="user-avatar" src="http://openweathermap.org/img/w/<%- m.weather[0].icon %>.png" alt="weather">
+        <ul class = "user-details">
+          <li class="user-name">
+            City: <%-m.name %>
+          </li>
+          <li class="number_repos">
+          Temperature: <%- m.main.temp %>
+          </li>
+        </ul>
+      </a>
+    </div>
+  </script>
+
+  <script id="gif-list" type="text/html">
+    <div>
+      <!-- <img class="gifdisplay" src="http://media.giphy.com/media/<%- m.id %>/giphy.gif" alt="gif"> -->
+      <img class="gifdisplay" src="<%= m.images.fixed_width_downsampled.url %>" alt="gif">
+    </div>
+  </script>
+
+    <script src="js/vendor.js"></script>
+
+    <script src="js/app.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/main.js"></script>
+
+  </body>
+</html>
